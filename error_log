@@ -1,0 +1,24 @@
+[01-Apr-2019 07:18:35 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/pajyxn390sbm/public_html/base1/crownpalace/booking.php on line 130
+[01-Apr-2019 09:20:47 UTC] PHP Notice:  Undefined index: useremail in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php on line 8
+[01-Apr-2019 09:20:47 UTC] PHP Notice:  Undefined index: userpassword in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php on line 9
+[01-Apr-2019 09:28:34 UTC] PHP Notice:  Undefined variable: user in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php on line 25
+[01-Apr-2019 09:28:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function check_login() on null in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php:25
+Stack trace:
+#0 {main}
+  thrown in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php on line 25
+[01-Apr-2019 09:30:19 UTC] PHP Notice:  Undefined variable: message in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php on line 68
+[01-Apr-2019 09:30:37 UTC] PHP Notice:  Undefined variable: message in /home/pajyxn390sbm/public_html/base1/crownpalace/login.php on line 68
+[01-Apr-2019 09:32:50 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 09:32:50 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17
+[01-Apr-2019 09:53:19 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 09:53:19 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17
+[01-Apr-2019 09:53:44 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 09:53:44 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17
+[01-Apr-2019 09:53:46 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 09:53:46 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17
+[01-Apr-2019 09:54:03 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 09:54:03 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17
+[01-Apr-2019 09:54:06 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 09:54:06 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17
+[01-Apr-2019 10:04:40 UTC] PHP Notice:  Undefined index: user_email in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 16
+[01-Apr-2019 10:04:40 UTC] PHP Notice:  Undefined index: user_password in /home/pajyxn390sbm/public_html/base1/crownpalace/includes/class.users.php on line 17

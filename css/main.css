@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    font-size: 14px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Dosis', sans-serif;
+} 
+
+.pdng_tb_80 {
+    padding-top: 80px !important;
+    padding-bottom: 60px !important;
+}
+
+.form-control {
+    font-size: 14px;
+}
+
+.move_up_100 {
+    margin-top: -100px;
+}
+
+.contact_page_card {
+    max-width: 900px;
+}
+
+.contact_listing span {
+    width: 120px;
+} 
+
+.text_primary {
+    color: #A51415;
+}
+
+.bg_primary {
+    background: #A51415;
+}
+
+.p_b_14 {
+    padding-bottom: 14px !important;
+}
+
+.font-sm {
+    font-size: 13px;
+}
+
+.fnsz_12 {
+    line-height: 14px;
+    font-size: 12px;
+}
+
+.mrg_t_36 {
+    margin-top: 36px;
+}
+
+.mrg_t_5 {
+    margin-top: 7px;
+}
+
+.pdng_t_124 {
+    padding-top: 123px;
+}
+.btns button{
+	background-color: #A51415;
+}
+
+.box_height_350 {
+    height: 350px;
+}
+
+.btns button:hover{
+	background-color: #ffff99;
+	border-color: #A51415;
+	color: #A51415;
+	border: 1px solid #A51415;
+}
+
+/*Landing Page Header*/
+header.header-custom div div a.btn-tab {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+header.header-custom div.logo-bg {
+	max-width: 140px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+header.header-custom .menu-tab {
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}
+
+header.header-custom div.menu-tab span {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+header.header-custom div.menu-tab .hamburgur {
+	font-size: 20px;
+	width: 40px !important;
+	height: 38px !important;
+	display: inline-block;
+	line-height: 21px;
+	cursor: pointer;
+}
+
+.mega_menu_btn {
+	margin-right: 45px;
+}
+
+header.header-custom div a.btn-tab:hover {
+	background-color: #A51415;
+	color: white;
+}
+
+/*Landing Page Banner and Slider*/
+div.banner-custom {
+	overflow: hidden;
+}
+
+div.banner-custom div.address-head {
+	position: absolute;
+	width: 100%;
+	top: 134px;
+}
+
+div.banner-custom div.address-head div.lg {
+	font-family: 'Dosis', sans-serif;
+	font-size: 2.5rem;
+	font-weight: 600;
+	text-shadow: 3px 2px 1px #1f1b1bdb;
+}
+
+div.banner-custom div.address-head p.sm {
+	font-family: 'Dosis', sans-serif;
+	font-size: 35px;
+	text-shadow: 3px 2px 1px #1f1b1bdb;
+}
+
+/*Landing Page Reservation Form*/
+div.reservation-form {
+	position: absolute;
+	top: 274px;
+	left: 0;
+	width: 100%;
+}
+
+div.reservation-form form .book-btn {
+	font-size: 14px;
+	background-color: #A51415;
+	width: 100%;
+	margin-top: 28px;
+	height: 36px;
+}
+
+div.reservation-form form.booking-form {
+	background-color: rgba(255, 255, 255, 0.9);
+	width: 100%;
+	max-width: 906px;
+	margin: 0px auto;
+	border-radius: 4px;
+}
+
+div.reservation-form form.booking-form label span.date-icon {
+	position: absolute;
+	top: 28px;
+	right: 10px;
+	font-size: 20px;
+	z-index: 5;
+	color: rgba(0, 0, 0, 0.7);
+	cursor: pointer;
+}
+
+/*Booking Home Page*/
+.home_banner {
+    background-image: url(../images/background1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    position: absolute;
+    z-index: -1;
+    width: 100%; 
+}
+
+.fa-phone {
+    transform: rotate(90deg);
+}
+
+.main_header .logo img {
+    width: 130px;
+}
+
+.main_header .bottom_header a.nav-link {
+    padding: 47px 20px;
+    border: none;
+}
+
+/* Login Registration Start */
+.card_size{
+	background-color: transparent;
+    padding: 0 15px;
+    max-width: 700px;
+    width: 100%;
+    position: fixed;
+    top: 40%;
+    margin-top: -200px;
+    left: 50%;
+    margin-left: -350px !important;
+    box-shadow: 0 0 6px 7px rgba(0,0,0,.2);
+    border: none;
+}
+
+.left_col{
+    background-color: #A51415;
+    min-height: 400px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.right_col{
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.form_in input[type="email"],
+.form_in input[type="password"],
+.form_in input[type="text"],
+.form_in input[type="number"],
+.form_in textarea{
+ 	border-left: 0px;
+ 	border-top: 0;
+ 	border-right: 0px;
+ 	border-color: #A51415;
+ 	border-radius: 0;
+        box-shadow: none !important;
+}
+
+.form_in input[type=email]:focus, .form_in input[type=password]:focus,
+.form_in input[type=text]:focus{
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.c_spans{
+	line-height: 0;
+}
+
+/* Booking page Start*/
+.main_header{
+	line-height: 0;
+}
+
+.top_header{
+    background-color: rgba(165, 20, 21, 0.79);
+}
+
+.bottom_header{
+    background-color: rgba(0,0,0,0.78);
+}
+
+
+.main_header.active .top_header{
+    display: none !important; 
+}
+
+.main_header.active .bottom_header a.nav-link {
+    padding: 24px 20px;
+}
+
+.main_header.active .logo img {
+    width: 51px;
+}
+ 
+.navs ul li:hover {
+  color: #fff;
+  border: none;
+  background-color: #A51415;
+}
+
+
+.left_side i{
+	transform: rotate(100deg);
+	font-size: 17px;
+}
+
+.agent_btn_cancel, .agent_btn_login {
+    color: #fff !important;
+    line-height: initial;
+    display: inline-block;
+}
+
+.btn.agent_btn_login{
+    background-color: black;
+}
+
+.btn.agent_btn_login:hover{
+    background-color: #A51415;
+}
+
+.btn.agent_btn_cancel{
+    background-color: #A51415;
+}
+
+.btn.agent_btn_cancel:hover{
+    background-color: black;
+}
+
+.section1 {
+    padding: 150px 0 99px 0;
+}
+
+.section1 h1, .section1 h2 {
+    text-shadow: 2px 2px 2px #000;
+} 
+
+.tabs{
+	padding : 40px 0 ; 
+	color: black;
+}
+
+.tabs .nav-tabs .nav-link {
+    color: #A51415;
+    font-size: 20px;
+    background: #f2f2f2;
+    flex: 0 0 33%;
+    margin: 0 auto;
+}
+
+.tabs .nav-tab .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    background: #ffffff;
+}
+
+
+.address i{
+	transform: rotate(0deg);
+}
+
+.gallery_image{
+	width: 300px;
+	height: 250px;
+}
+
+.gallery_col{
+	padding-right: 0px;
+}
+
+/* Hide all steps by default: */
+#stepForm .tab {
+    display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+#stepForm  .first_form  {
+    max-width: 500px;
+}
+
+#stepForm  .step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;  
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+}
+
+#stepForm .step.active {
+	opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+#stepForm .step.finish {
+	background-color: #4CAF50;
+}
+ 
+.room_price{
+	font-size: 20px;
+}
+
+.room_img{
+	width: 200px;
+	height: 130px;
+}
+
+/*Trans Input Group*/
+.input-group-append-trans label {
+    margin: 0 !important;
+    position: relative;
+    border-bottom: 1px solid #A51415;
+    padding-top: 3px;
+    cursor: pointer;
+    color:#A51415;
+}
+
+.input-group-append-trans label:hover {
+    color:#000000;
+}
+
+
+/*Social Links*/
+.social_links {
+    color: #fff;
+    left: 10px;
+    bottom: 20px;
+    position: absolute;
+}
+
+.social_links a {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 100%;
+    padding: 10px 2px !important;
+    text-align: center;
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.2);
+    margin-right: 10px !important;
+    color: #000 !important;
+}
+
+.social_links a:hover {
+    transform: scale(1.1);
+}
+
+/*Pricing Details*/
+.pricing_details {
+    position: absolute;
+    right: 0;
+    top: 0;
+    vertical-align: top;
+    line-height: 16px;
+    text-align: right;
+}
+
+.pricing_details i.text-muted {
+    width: 100%;
+    display: block;
+}
+
+
+/*About Start*/
+
+.flip-card-inner {
+	position: relative;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+	transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+}
+
+.flip-card-back {
+	background-color: #A51415; 
+	transform: rotateY(180deg);
+	z-index: 1;
+	height: 350px;
+	color: #ffffff;
+	font-size: 17px;
+}
+
+.flip-card-front .above {
+    position: relative;
+    bottom: 0;
+    margin-top: -89px;
+    color: #A51415;
+    background-color: rgba(255, 255, 255, 0.67);
+}
+
+/*Room Start*/
+.arrow{
+	transform: rotate(90deg);
+}
+
+
+/*Banquet Start*/
+.para_font{
+	font-size: 17px;
+}
+
+.accordion .card .card-header .fa-minus-circle {
+    display: block  !important;
+}
+ 
+.accordion .card .card-header.collapsed .fa-minus-circle {
+    display: none !important;
+}
+ 
