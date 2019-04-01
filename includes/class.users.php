@@ -71,7 +71,7 @@ class Users {
     public function get_roles() {
 
         $roles['administrator'] = 'Administrator';
-        $roles['staff']         = 'staff';
+        $roles['staff']         = 'Staff';
 
         return $roles; 
     } 
@@ -407,7 +407,7 @@ class Users {
                     $en_password = md5($npassword);   
 
                     $sql2 = "INSERT INTO users  
-                            (`id`, `first_name`, `last_name`, `email`, `phone`, `gender`, `country`, `state`, `city`, `address`, `role`, `designation`, `department`, `experience`, `educational_details`, `salary`, `account_details`,`emailsign`, `password`, `activation_key`, `status`, `team`, `registered`)
+                            (`id`, `first_name`, `last_name`, `email`, `phone`, `gender`, `country`, `state`, `city`, `address`, `zip_code`, `pan_number`, `role`, `designation`, `password`, `activation_key`, `status`, `registered`)
                             VALUES 
                             (NULL, '$first_name', '$last_name', '$email', '$phone', '', '', '', '', '', '$role', '', '', '', '', '', '','', '$en_password', '', '1', '0', CURRENT_TIMESTAMP)";
 

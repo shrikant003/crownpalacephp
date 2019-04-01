@@ -1,7 +1,12 @@
 <?php
 
 /*
- * Global Variable - Connection 
+ * Constants
+ */
+define('SITE_URL', 'http://base1.tutorsincity.com/crownpalace/php/');
+ 
+/*
+ * Global Variable - Connection  
  */
 
 global $connection;  
@@ -43,3 +48,4 @@ $database = mysqli_select_db($connection, $databasename);
 if(!$database) {
     die('Error in connect with database');
 }  
+
