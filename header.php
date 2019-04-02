@@ -31,6 +31,11 @@
     
 </head> 
 <body>
+
+    <?php
+
+    // Contact data
+    $contactdata = get_contact_data(); ?>
     
     <?php if($pagename!='index.php') { ?>
     
@@ -47,10 +52,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="left_side float-left py-2 mrg_r_10">
-                            <div class="font-weight-bold contact_details"><span><i class="fas fa-phone"></i> +91 731 252 8855</span></div>
+                            <div class="font-weight-bold contact_details"><span><i class="fas fa-phone"></i> <?php echo $contactdata['numbers']['0']['number']; ?></span></div>
                         </div>
                         <div class="left_side float-left py-2">
-                            <div class="address_details"><span class="address mr-2"><i class="fas fa-map-marker-alt"></i></span>2 A, Near Geeta Bhavan Square, Kanchan Bagh South Tukoganj</div>
+                            <div class="address_details"><span class="address mr-2"><i class="fas fa-map-marker-alt"></i></span><?php echo $contactdata['address']; ?></div>
                         </div>  
                         <div class="left_side float-right">
                             <a class="mr-2 agent_btn_login" href="<?php echo site_url('login.php'); ?>">Travel Agent Login</a>
@@ -100,11 +105,11 @@
                                     </div>
                             </div>
                             <div class="col-sm-10 col-12">
-                                    <div class="float-right pdng_t_20 mega_menu_btn"> <a class="btn btn-tab rounded-0  font-weight-bold" href="#suit-room" role="button">Suits & Room</a>
-                                            <a class="btn btn-tab rounded-0 font-weight-bold" href="#rest-bar" role="button">Restaurant & Bar</a>
-                                            <a class="btn btn-tab rounded-0 font-weight-bold" href="#fast-food" role="button">Fast Food Shop</a>
-                                            <div class="menu-tab"> <span class="hamburgur text-white pdng_10"><i class="fas fa-bars w-100"></i></span>	
-                                            </div>
+                                    <div class="float-right pdng_t_20 mega_menu_btn"> 
+                                            <a class="btn btn-tab rounded-0  font-weight-bold scrolltoid" href="#suit-room" role="button">Suits & Room</a>
+                                            <a class="btn btn-tab rounded-0 font-weight-bold scrolltoid" href="#rest-bar" role="button">Restaurant & Bar</a>
+                                            <a class="btn btn-tab rounded-0 font-weight-bold scrolltoid" href="#fast-food" role="button">Fast Food Shop</a>
+                                            <div class="menu-tab"> <span class="hamburgur text-white pdng_10"><i class="fas fa-bars w-100"></i></span></div>
                                     </div>
                             </div>
                     </div>

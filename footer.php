@@ -6,10 +6,10 @@
         <div class="container"> 
             <div class="row"> 
                 <div class="col">
-                    <p class="pdng_y_10 m-0"><a class="text-white d-inline-block tdn" href="#">Reservation and Cancellation Policy </a></p>
+                    <p class="pdng_y_10 m-0"><a class="text-white d-inline-block tdn" href="<?php echo site_url('/reservation-and-cancellation-policy.php'); ?>">Reservation and Cancellation Policy </a></p>
                 </div>
-                <div class="col">
-                    <p class="pdng_y_10 m-0 text-center">&copy; Copyright 2019 All Right Reserved.</p>
+                <div class="col">  
+                    <p class="pdng_y_10 m-0 text-center">&copy; Copyright <?php echo date('Y'); ?> All Right Reserved.</p>
                 </div>  
                 <div class="col">
                     <p class="pdng_y_10 m-0 text-right">Developed By: <a class="d-inline-block text-white tdn" href="http://webllisto.com" target="_blank">Webllisto Technologies Pvt Ltd</a> </p>

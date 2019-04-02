@@ -5,11 +5,12 @@
     <section class="section1 bx_shw  text-center vh-100">
         <div class="container">
             <div class="text-white pt-5 pb-5">
-                <h1 class="font-weight-bold">HOTEL CROWN PALACE</h1>
-                <h2>2 A Kanchan Bagh Near Geeta Bhavan Square, Indore, Madhya Pradesh, India</h2>
+              <?php $banner_data = get_banner_data();  ?>
+                <h1 class="font-weight-bold"><?php echo $banner_data['title']; ?></h1>
+                <h2><?php echo $banner_data['subtitle']; ?></h2>
             </div>
-            <div class="row pt-5 text-center d-block">
-                <a class="btn btn-lg d-inline-block mr-1 agent_btn_login" href="#book_now_form">Book Now</a>
+            <div class="row pt-5 text-center d-block"> 
+                <a class="btn btn-lg d-inline-block mr-1 agent_btn_login scrolltoid" href="#book_now_form"><?php echo $banner_data['btn_label']; ?></a>
             </div>
         </div>
     </section>

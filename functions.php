@@ -93,7 +93,173 @@ function get_column_names($db, $table) {
 	}
  
 	return $columns; 
-} 
+}
 
-  
-pre_print_r(get_column_names($databasename, 'users'));
+pre_print_r(get_column_names($databasename, 'users'));  
+ 
+/*
+ * Get Social Links Function
+ */
+function get_social_links() {
+
+	$social_links = array(
+		array(
+			'link' => '#',
+			'icon_class' => 'fab fa-facebook-f'
+		),
+		array(
+			'link' => '#',
+			'icon_class' => 'fab fa-twitter'
+		), 
+		array(
+			'link' => '#',
+			'icon_class' => 'fab fa-google-plus-g'
+		),
+		array(
+			'link' => '#',
+			'icon_class' => 'fab fa-pinterest-p'
+		), 
+		array(
+			'link' => '#',
+			'icon_class' => 'fab fa-youtube'
+		), 
+		array(
+			'link' => '#',
+			'icon_class' => 'fab fa-instagram'
+		),
+	); 
+
+	return $social_links;
+}
+
+/*
+ * Show Social Links
+ */
+function show_social_links($classes = '', $wr_classes = '') { 
+
+	$social_links = get_social_links();  
+	if(!empty($social_links)) {
+		echo '<div class="'.$wr_classes.'">';
+		foreach($social_links as $sl_key => $sl_val) {
+			if(($sl_val['link']!='') && ($sl_val['icon_class']!=''))
+			echo '<a href="'.$sl_val['link'].'" class="'.$classes.'" target="_blank"><i class="'.$sl_val['icon_class'].'"></i></a>';		
+		}
+		echo '</div>';
+	}
+
+} 
+   
+/*
+ * Home Services Data
+ */   
+function get_services() {
+	$services = array(
+		array(
+			'id' 		=> 'suit-room',
+			'title' 		=> 'Suits & Room',
+			'description' 	=> 'At Crown Palace Indore we pride ourselves in providing that little bit extra, ensuring that our customers come first and our services are flexible and tailor made to suit the needs of our guests....',
+			'image_url' 	=> 'images/suits&room.jpg',
+			'btn_label' 	=> 'Find out more ',
+			'btn_link' 		=> site_url('/cafe-bake-well.php'),
+			'res_no' 		=> 'Reservations : 0731-2528855'
+		),
+		array(
+			'id' 		=> 'rest-bar',
+			'title' 		=> 'Restaurant & Bar',
+			'description' 	=> 'An awesome open air restaurant that serve you with rich spicy aromas, sits alongside a wide selection of delicious dishes while providing room for fresh breezes and views of the surrounding nature...',
+			'image_url' 	=> 'images/restaurants&bar.jpg',
+			'btn_label' 	=> 'Find out more ',
+			'btn_link' 		=> site_url('/restaurant-and-bar.php'),
+			'res_no' 		=> 'Reservations : 0731-2528855'
+		),
+		array(
+			'id' 		=> 'fast-food',
+			'title' 		=> 'Fast Food Shop',
+			'description' 	=> 'The award winning Fast Food Shop at Hotel Crown Palace are run by Indore\'s best and most welcoming teams. Come for delicious afternoon teas on Cafe Bakewell...',
+			'image_url' 	=> 'images/restaurants&bar.jpg',
+			'btn_label' 	=> 'Find out more ',
+			'btn_link' 		=> site_url('/fast-food-shop.php'),
+			'res_no' 		=> 'Reservations : 0731-2528855'
+		),
+	); 
+
+	return $services;  
+}
+
+/*
+ * Show Services 
+ */
+function show_services() {
+
+	$services = get_services();
+
+	if(!empty($services)) {
+	foreach($services as $s_key => $s_val) {
+		if($s_key%2==0) {  
+			echo '<section class="pdng_y_60" id="'.$s_val['id'].'">';
+		} else {
+			echo '<section class="bg_light pdng_y_60" id="'.$s_val['id'].'">';
+		}
+		echo '<div class="container-fluid">
+				<div class="row">';
+
+					if($s_key%2==0) {  
+						echo '<div class="col-md-6 "><img src="'.$s_val['image_url'].'" class="card-img-top" alt="..."></div>';
+					}
+
+					echo '<div class="col-md-6">
+						<h3 class="mrg_b_30">'.$s_val['title'].'</h3>
+						<p class="mrg_b_20">'.$s_val['description'].'</p>
+						<div class="mrg_b_20"> <a class="btn btn-primary font-sm p-2 bg_primary border-0" href="'.$s_val['btn_link'].'" role="button">'.$s_val['btn_label'].' <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+						<div>
+							<p class="text-right font-sm border-top pdng_y_10 m-0">'.$s_val['res_no'].'</p>
+						</div>
+					</div>';
+
+					if($s_key%2!=0) { 
+						echo '<div class="col-md-6 "><img src="'.$s_val['image_url'].'" class="card-img-top" alt="..."></div>';
+					}
+
+				echo '</div>
+			</div>
+		</section>';
+		}
+
+	}
+}
+
+/*
+ * Get Banner Data
+ */
+function get_banner_data() {
+
+	$banner_data['slider'] = array('images/home-img-4.png', 'images/home-img.png', 'images/home-img-3.png', 'images/home-img-2.png');
+	$banner_data['title'] = 'HOTEL CROWN PALACE';
+	$banner_data['subtitle'] = '2 A, Kanchan Bagh South Tukoganj Near Geeta Bhavan Square,Indore';
+	$banner_data['btn_label'] = 'Book Now';
+
+	return $banner_data;
+}
+
+/*
+ *  Get contact details
+ */
+function get_contact_data() {
+
+	$contact['numbers'][] = array( 'label' => 'Rooms Reservation', 'number' => '+91 07312528855'); 
+	$contact['numbers'][] = array( 'label' => 'Banquets', 'number' => '+91 8109010159'); 
+	$contact['numbers'][] = array( 'label' => 'Bakewell Bakery', 'number' => '+91 07312528877'); 
+	$contact['numbers'][] = array( 'label' => 'Take Away Parcel', 'number' => '+91 07312528875'); 
+	$contact['numbers'][] = array( 'label' => 'Xpress Bakewell Geeta Bhawan', 'number' => '+91 7773002901'); 
+	$contact['numbers'][] = array( 'label' => 'Xpress Bakewell Anand Bazar', 'number' => '+91 7773002902'); 
+
+	$contact['address'] = '2-A, Near Geeta Bhavan Square, Kanchan Bagh, Indore, Madhya Pradesh - 452001';
+
+	$contact['distance'][] = array( 'label' => 'Distance from Airport', 'number' => '8 KM'); 
+	$contact['distance'][] = array( 'label' => 'Distance from Railway Station', 'number' => '1 KM');  
+	$contact['distance'][] = array( 'label' => 'Distance from Bus Stand', 'number' => '1 KM'); 
+
+	return $contact;
+
+}

@@ -256,25 +256,7 @@ class Users {
 
         return $name; 
     }
-
-    /*
-    * Get User By ID
-    */
-    public function get_user_emailsign($user_id){
-
-        global $connection;  
-
-        $sql = "SELECT emailsign FROM users WHERE id='$user_id'"; 
-        
-        $result = mysqli_query($connection, $sql); 
-        
-        if($result) {
-            $row = mysqli_fetch_assoc($result);
-        }
-
-        return $row['emailsign']; 
-
-    }
+ 
     
     /*
      * Delete User 
@@ -381,15 +363,21 @@ class Users {
 
         global $connection;  
 
-        $first_name = ucwords(trim($post['first_name']));  
-        $last_name = ucwords(trim($post['last_name']));  
-        $email = trim($post['email']); 
-        $phone = trim($post['contact_number']);  
-        $role = trim($post['user_role']);   
-        $npassword = trim($post['password']);    
-        $s_team_leader = trim($post['s_team_leader']);    
-        $r_team_leader = trim($post['r_team_leader']);     
-
+        $first_name     = ucwords(trim($post['first_name']));  
+        $last_name      = ucwords(trim($post['last_name']));  
+        $contact        = trim($post['contact_number']);  
+        $address        = trim($post['address']); 
+        $country        = trim($post['country']); 
+        $state          = trim($post['state']); 
+        $city           = trim($post['city']); 
+        $email          = trim($post['email']); 
+        $zip_code       = trim($post['zip_code']); 
+        $phone          = trim($post['phone']); 
+        $pan            = trim($post['pan']); 
+        $email          = trim($post['email']);   
+        $role           = 'agent';   
+        $npassword      = trim($post['password']);    
+    
         // Check if all required value given
         if(($first_name!='') && ($last_name!='') && ($email!='') && ($role!='') && ($npassword!='')) {
 
@@ -409,7 +397,7 @@ class Users {
                     $sql2 = "INSERT INTO users  
                             (`id`, `first_name`, `last_name`, `email`, `phone`, `gender`, `country`, `state`, `city`, `address`, `zip_code`, `pan_number`, `role`, `designation`, `password`, `activation_key`, `status`, `registered`)
                             VALUES 
-                            (NULL, '$first_name', '$last_name', '$email', '$phone', '', '', '', '', '', '$role', '', '', '', '', '', '','', '$en_password', '', '1', '0', CURRENT_TIMESTAMP)";
+                            (NULL, '$first_name', '$last_name', '$email', '$phone', '', '$country', '$state', '$city', '$address', '$zip_code', '$pan', '$role', '', '$en_password', '', '1', '0', CURRENT_TIMESTAMP)";
 
                     $result2 = mysqli_query($connection, $sql2);
                     $user_id = mysqli_insert_id($connection);
@@ -525,27 +513,7 @@ class Users {
         
     }
     
-    /*
-     * Set Team ID
-     */
-    public function set_team_id($user_id, $team_id) {
-
-        global $connection; 
-
-        $sql = "UPDATE users
-                SET team='$team_id' 
-                WHERE id='$user_id'";  
-
-        $result = mysqli_query($connection, $sql);
-        
-        if($result) {
-            return 1;
-        } else {
-            return 0;
-        }
-        
-    } 
-
+ 
    
     /*
      * Set User Activation Key
