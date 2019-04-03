@@ -1,6 +1,13 @@
 <?php include 'header.php'; ?>
  
     <!-- Main Start-->
+<?php
+
+//$banquet_page =get_banquet();
+//print_r($banquet_page);
+
+?>
+
     <section>
         <div class="container">
             <div class="py-5">
