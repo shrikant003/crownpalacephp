@@ -3,6 +3,7 @@
 /*
  * Constants
  */
+define('ADMINEMAIL', 'shrikant.webllisto@gmail.com');
 define('SITE_URL', 'http://base1.tutorsincity.com/crownpalace/php/');
  
 /*
@@ -10,7 +11,7 @@ define('SITE_URL', 'http://base1.tutorsincity.com/crownpalace/php/');
  */
 
 global $connection;  
-
+    
 /*
  * Required Variable 
  */
@@ -33,12 +34,12 @@ if(!$connection) {
 /*
  * Create Database
  */
-$sql = "CREATE DATABASE $databasename";
-$sql = "CREATE DATABASE IF NOT EXISTS $databasename"; 
-$output = mysqli_query($connection, $sql); 
-if(!$output) {
-    die('Error in database creation. ');
-}
+// $sql = "CREATE DATABASE $databasename";
+// $sql = "CREATE DATABASE IF NOT EXISTS $databasename"; 
+// $output = mysqli_query($connection, $sql); 
+// if(!$output) {
+//     die('Error in database creation. ');
+// } 
 
 /* 
  *  Connect with database

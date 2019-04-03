@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Start Session 
+ */
+session_start();
+
 //Show Errors
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -94,8 +99,6 @@ function get_column_names($db, $table) {
  
 	return $columns; 
 }
-
-pre_print_r(get_column_names($databasename, 'users'));  
  
 /*
  * Get Social Links Function
@@ -262,4 +265,76 @@ function get_contact_data() {
 
 	return $contact;
 
+}
+
+/*
+ * Generate Password
+ */
+function generate_random_password() {
+
+	$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
+	$password = substr( str_shuffle( $chars ), 0, 8 );
+
+	return $password;
+}
+
+
+/* 
+ * Send mail with attachment
+ */
+function send_mail($to, $from, $fromName, $subject ,$htmlContent, $file = '', $bcc = '') {
+    
+        $status = 0; 
+        if(($to!='') && ($from!='') && ($fromName!='') && ($subject!='') && ($htmlContent!='')) { 
+    
+            //header for sender info
+//           $headers = "From: $fromName"." <".$from.">";
+            $headers  = "From: $fromName <$from> \r\n";
+             
+            if($bcc!=''){
+                $headers .= "Bcc: $bcc ";  
+            }  
+  
+            //boundary 
+            $semi_rand = md5(time()); 
+            $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x"; 
+
+            //headers for attachment 
+            $headers .= "\nMIME-Version: 1.0\n" . "Content-Type: multipart/mixed;\n" . " boundary=\"{$mime_boundary}\""; 
+
+            //multipart boundary 
+            $message = "--{$mime_boundary}\n" . "Content-Type: text/html; charset=\"UTF-8\"\n" .
+            "Content-Transfer-Encoding: 7bit\n\n" . $htmlContent . "\n\n"; 
+
+            //preparing attachment
+            if(!empty($file) > 0){
+                if(is_file($file)){
+                    $message .= "--{$mime_boundary}\n";
+                    $fp =    @fopen($file,"rb");
+                    $data =  @fread($fp,filesize($file));
+
+                    @fclose($fp);
+                    $data = chunk_split(base64_encode($data));
+                    $message .= "Content-Type: application/octet-stream; name=\"".basename($file)."\"\n" . 
+                    "Content-Description: ".basename($files[$i])."\n" .
+                    "Content-Disposition: attachment;\n" . " filename=\"".basename($file)."\"; size=".filesize($file).";\n" . 
+                    "Content-Transfer-Encoding: base64\n\n" . $data . "\n\n";
+                }
+            }
+            
+            $message .= "--{$mime_boundary}--";
+            $returnpath = "-f" . $from;
+            
+            //send email
+            $mail = @mail($to, $subject, $message, $headers, $returnpath); 
+            // Use wp_mail() for wordpress
+            if($mail) {
+                $status = 1;
+            }
+//            //email sending status
+//            echo $mail?"<div class='alert alert-success'>Mail sent.</div>":"<div class='alert alert-danger'>Mail sending failed.</div>";
+//        
+        } 
+        
+        return $status; 
 }

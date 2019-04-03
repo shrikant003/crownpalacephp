@@ -153,6 +153,7 @@ class Users {
 
     /*
     * Function For Retrive All Users Information
+    * $users = $user->get_users();  
     */
     public function get_users() {
 
@@ -359,34 +360,53 @@ class Users {
     /*
      * Function Register New User
      */ 
-    public function insert($post) { 
+    public function insert() { 
 
         global $connection;  
 
-        $first_name     = ucwords(trim($post['first_name']));  
-        $last_name      = ucwords(trim($post['last_name']));  
-        $contact        = trim($post['contact_number']);  
-        $address        = trim($post['address']); 
-        $country        = trim($post['country']); 
-        $state          = trim($post['state']); 
-        $city           = trim($post['city']); 
-        $email          = trim($post['email']); 
-        $zip_code       = trim($post['zip_code']); 
-        $phone          = trim($post['phone']); 
-        $pan            = trim($post['pan']); 
-        $email          = trim($post['email']);   
+        $message = '';
+        $status = 0;
+        if(isset($_POST['agency_name'])) {
+            $agency_name     = ucwords(trim($_POST['agency_name']));  
+
+            // String to Array
+            $agency_name_ar  = explode(' ',$agency_name); 
+
+            $first_name      = ucwords(trim($agency_name_ar['0']));  
+            if(count($agency_name_ar)>1) {
+                $last_name      = ucwords(trim($agency_name_ar['1']));  
+            } else {
+                $last_name      = '';  
+            } 
+
+        } else {
+            $first_name     = ucwords(trim($_POST['first_name']));  
+            $last_name      = ucwords(trim($_POST['last_name']));            
+        }
+
+        $contact        = trim($_POST['contact_number']);  
+        $address        = trim($_POST['address']); 
+        $country        = trim($_POST['country']); 
+        $state          = trim($_POST['state']); 
+        $city           = trim($_POST['city']); 
+        $email          = trim($_POST['email']); 
+        $zip_code       = trim($_POST['zip_code']); 
+        $phone          = trim($_POST['phone']); 
+        $pan            = trim($_POST['pan']); 
+        $email          = trim($_POST['email']);    
         $role           = 'agent';   
-        $npassword      = trim($post['password']);    
+        // $npassword      = trim($post['password']);    
+        $npassword      = generate_random_password();    
     
-        // Check if all required value given
-        if(($first_name!='') && ($last_name!='') && ($email!='') && ($role!='') && ($npassword!='')) {
+        // Check if all required value given 
+        if(($first_name!='') && ($email!='') && ($role!='') && ($npassword!='')) {
 
             // Check Duplicate Entry 
             $sql = "SELECT id FROM users WHERE email='$email'";  
             $result = mysqli_query($connection, $sql);
             if($result) {
             $num_rows = mysqli_num_rows($result);
-            if($num_rows==0) {  
+            if($num_rows==0) {   
 
                     // Generate Activation Key
                      $activation_key = md5($email);     
@@ -397,52 +417,42 @@ class Users {
                     $sql2 = "INSERT INTO users  
                             (`id`, `first_name`, `last_name`, `email`, `phone`, `gender`, `country`, `state`, `city`, `address`, `zip_code`, `pan_number`, `role`, `designation`, `password`, `activation_key`, `status`, `registered`)
                             VALUES 
-                            (NULL, '$first_name', '$last_name', '$email', '$phone', '', '$country', '$state', '$city', '$address', '$zip_code', '$pan', '$role', '', '$en_password', '', '1', '0', CURRENT_TIMESTAMP)";
+                            (NULL, '$first_name', '$last_name', '$email', '$phone', '', '$country', '$state', '$city', '$address', '$zip_code', '$pan', '$role', '', '$en_password', '', '1', CURRENT_TIMESTAMP)";
 
                     $result2 = mysqli_query($connection, $sql2);
                     $user_id = mysqli_insert_id($connection);
                     if($result2){  
                         
-                        echo "<div class='alert alert-success'>New user account created.</div>";
+                        $message = "<div class='alert alert-success'>Your account has been created successfully.</div>";
+                        $status = 1;
                         
+                        // Send Mail
                         $this->account_created_mail($first_name, $email, $npassword);     
                         
-                        // Inserting Teams for team leads
-                        if(($role=='lead_sales_manager') || ($role=='lead_staff')) { 
-                            
-                            if($role=='lead_sales_manager') {
-                                $team_type = 'Sales';
-                            }
-
-                            if($role=='lead_staff') {
-                                $team_type = 'Recruiting';
-                            }   
-                            
-                            $team_name = $first_name." ".$last_name; 
-                            $team = new Teams();  
-                            $team->insert($team_name, $user_id, $team_type);  
-                            
-                        } else {   
-                            if($s_team_leader!='') { 
-                                $this->set_members_team_id($user_id, $s_team_leader);    
-                            }  
-                            if($r_team_leader!='') { 
-                                $this->set_members_team_id($user_id, $r_team_leader);   
-                            }  
-                        }       
-                        
                     } else {
-                        echo "<div class='alert alert-danger'> Sorry, There is some error. Please try again. <a href='add-user.php'>Register Again</a></div>"; 
+                        $message =  "<div class='alert alert-danger'> Sorry, There is some error. Please try again.</div>"; 
+                        $status = 0;
                     }
 
             }  else { 
-                echo "<div class='alert alert-warning'>User already exists with given email id. </div>" ;   
+                $message =  "<div class='alert alert-warning'>User already exists with given email id. </div>" ;   
+                $status = 2;
             }   
             } else { 
-                echo "<div class='alert alert-warning'>User already exists with given email id. </div>" ;   
+                $message =  "<div class='alert alert-warning'>User already exists with given email id. </div>" ;  
+                $status = 2; 
             }   
 
-        } 
+        } else {
+            $message =  "<div class='alert alert-warning'>Please enter all required fields. </div>" ;  
+            $status = 0; 
+        }  
+
+        // Result Array
+        $response['status']= $status;
+        $response['message'] = $message;
+
+        return $response;    
 
     } 
     
@@ -553,13 +563,13 @@ class Users {
     public function account_created_mail($firstname, $to, $password) { 
         
         $from = ADMINEMAIL;    
-        $fromName = 'Holistic Partners';
+        $fromName = 'Hotel Crownpalace';
         $subject = 'Your account has been created.'; 
 
         $siteurl = site_url(); 
     
-        $htmlContent = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Holistic Partners</title></head>
-        <body style="background-color: #ffffff;"><div style="background:#eeeeee; box-sizing:border-box;font-family:arial; height:auto; width:100%; margin:0 auto; max-width:700px; padding:20px 40px;"><h2 style="text-align: center; border-bottom: 10px solid #30c0d3; padding: 0 20px 20px 0;">Holistic Partners</h2><br /> 
+        $htmlContent = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Hotel Crownpalace</title></head>
+        <body style="background-color: #ffffff;"><div style="background:#eeeeee; box-sizing:border-box;font-family:arial; height:auto; width:100%; margin:0 auto; max-width:700px; padding:20px 40px;"><h2 style="text-align: center; border-bottom: 10px solid #30c0d3; padding: 0 20px 20px 0;">Hotel Crownpalace</h2><br /> 
         Hello '.$firstname.', <br /><br />     
         <table>
         <tr><td>Your account has been created.</td></tr>
@@ -567,7 +577,7 @@ class Users {
         <tr><td>Email:</td><td>'.$to.'</td></tr> 
         <tr><td>Password:</td><td>'.$password.'</td></tr> 
         </table>
-        <p><br />--<br /><b>Regards,</b><br /><b>Team Holistic Partners</b><br /><a href="'.$siteurl.'">'.$siteurl.'</a></p>  
+        <p><br />--<br /><b>Regards,</b><br /><b>Team Hotel Crownpalace</b><br /><a href="'.$siteurl.'">'.$siteurl.'</a></p>  
         </div>
         </body></html>'; 
 
@@ -606,7 +616,7 @@ class Users {
                                 $to = $udata['email'];
                                 $firstname = $udata['first_name'];
                                 $from = ADMINEMAIL;       
-                                $fromName = 'Holistic Partners';
+                                $fromName = 'Hotel Crownpalace';
                                 $subject = 'Reset Password Link.'; 
                                 
                                 $activation_key = substr(md5(time()),0,8); 
@@ -614,15 +624,15 @@ class Users {
                                 $this->set_activation_key($uid, $activation_key); 
                                 $reset_password_link = $siteurl.'/reset-password.php?reset_key='.$activation_key;   
                                 
-                                $htmlContent = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Holistic Partners</title></head>
-                                <body style="background-color: #ffffff;"><div style="background:#eeeeee; box-sizing:border-box;font-family:arial; height:auto; width:100%; margin:0 auto; max-width:700px; padding:20px 40px;"><h2 style="text-align: center; border-bottom: 10px solid #30c0d3; padding: 0 20px 20px 0;">Holistic Partners</h2><br /> 
+                                $htmlContent = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Hotel Crownpalace</title></head>
+                                <body style="background-color: #ffffff;"><div style="background:#eeeeee; box-sizing:border-box;font-family:arial; height:auto; width:100%; margin:0 auto; max-width:700px; padding:20px 40px;"><h2 style="text-align: center; border-bottom: 10px solid #30c0d3; padding: 0 20px 20px 0;">Hotel Crownpalace</h2><br /> 
                                 Hello '.$firstname.', <br /><br />     
                                 <table>
                                 <tr><td>Please click on following link to change password of your account. </td></tr>
                                 <tr><td><a href="'.$reset_password_link.'">Reset Account Password</a></td></tr>
                                 <tr><td>Ignore this mail you did not sent any change password request.</td></tr>
                                 </table>
-                                <p><br />--<br /><b>Regards,</b><br /><b>Team Holistic Partners</b><br /><a href="'.$siteurl.'">'.$siteurl.'</a></p>  
+                                <p><br />--<br /><b>Regards,</b><br /><b>Team Hotel Crownpalace</b><br /><a href="'.$siteurl.'">'.$siteurl.'</a></p>  
                                 </div>
                                 </body></html>';  
                             

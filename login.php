@@ -13,10 +13,11 @@ if(isset($_POST['sign_in'])) {
     if($loginstatus>0) {
 
         $message = "<div class='alert alert-success text-center'>You are successfully logged in.</div>" ;  
-        $pageurl = site_url('/dashboard.php');  
+        // $pageurl = site_url('/dashboard.php');  
+        $pageurl = site_url();  
 
         //Redirect 
-        header("Location:$pageurl");  
+        header("Location:$pageurl");   
 
     } else {
         $message = "<div class='alert alert-danger text-center'>Invalid Email/Password.</div>" ;   
@@ -26,11 +27,11 @@ if(isset($_POST['sign_in'])) {
     
     $login = $user->check_login();
     if($login) {
-        $dashboardurl = site_url('/dashboard.php'); 
+        $dashboardurl = site_url('?login=1'); 
         header("Location:$dashboardurl");    
     }  
     
-}  
+}   
 ?>    
 <!DOCTYPE html>
 <html>
